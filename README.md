@@ -1,16 +1,20 @@
-templateR
+ThreeWayTest
 ================
-<img src= 'https://github.com/neurogenomics/templateR/raw/master/inst/hex/hex.png' height= '300' ><br><br><br><br>
-[![](https://img.shields.io/badge/devel%20version-0.99.0-black.svg)](https://github.com/neurogenomics/templateR)
+<img src= 'https://github.com/bschilder/ThreeWayTest/raw/master/inst/hex/hex.png' height= '300' ><br><br><br><br>
+[![](https://img.shields.io/badge/devel%20version-0.99.0-black.svg)](https://github.com/bschilder/ThreeWayTest)
 [![R build
-status](https://github.com/neurogenomics/templateR/workflows/rworkflows/badge.svg)](https://github.com/neurogenomics/templateR/actions)
-[![](https://img.shields.io/github/last-commit/neurogenomics/templateR.svg)](https://github.com/neurogenomics/templateR/commits/master)
-[![](https://img.shields.io/github/languages/code-size/neurogenomics/templateR.svg)](https://github.com/neurogenomics/templateR)
-[![](https://codecov.io/gh/neurogenomics/templateR/branch/master/graph/badge.svg)](https://codecov.io/gh/neurogenomics/templateR)
+status](https://github.com/bschilder/ThreeWayTest/workflows/rworkflows/badge.svg)](https://github.com/bschilder/ThreeWayTest/actions)
+[![](https://img.shields.io/github/last-commit/bschilder/ThreeWayTest.svg)](https://github.com/bschilder/ThreeWayTest/commits/master)
+[![](https://img.shields.io/github/languages/code-size/bschilder/ThreeWayTest.svg)](https://github.com/bschilder/ThreeWayTest)
+[![](https://codecov.io/gh/bschilder/ThreeWayTest/branch/master/graph/badge.svg)](https://codecov.io/gh/bschilder/ThreeWayTest)
 [![License:
-GPL-3](https://img.shields.io/badge/license-GPL--3-blue.svg)](https://cran.r-project.org/web/licenses/GPL-3)
-¶ <h4> ¶ Authors: <i>yourGivenName yourFamilyName</i> ¶ </h4>
-<h4> ¶ README updated: <i>Feb-08-2023</i> ¶ </h4>
+GPL-3](https://img.shields.io/badge/license-GPL--3-blue.svg)](https://cran.r-project.org/web/licenses/GPL-3)  
+<h4>  
+Authors: <i>yourGivenName yourFamilyName</i>  
+</h4>
+<h4>  
+README updated: <i>Feb-17-2023</i>  
+</h4>
 
 <!-- To modify Package/Title/Description/Authors fields, edit the DESCRIPTION file -->
 
@@ -57,7 +61,7 @@ Secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets):
     results to be displayed via the `rworkflows::use_badges()` at the
     top of the *README.Rmd*. This [Codecov](https://app.codecov.io/)
     token is repository-specific and can be found
-    [here](https://app.codecov.io/gh/neurogenomics/templateR).
+    [here](https://app.codecov.io/gh/bschilder/ThreeWayTest).
 3.  `DOCKER_TOKEN`: Allows GitHub Actions to push to the
     [neurogenomicslab
     DockerHub](https://hub.docker.com/orgs/neurogenomicslab) account.
@@ -84,11 +88,18 @@ ask someone who does to change this for you.
 
 *\<—(End of section that can be deleted after forking the template)—\>*
 
-## `templateR`: packageTitle
+# Introduction
 
-### packageDescription.
+This Repository contains code and simulation for Three way test in
+submitted paper.
 
-If you use `templateR`, please cite:
+## `ThreeWayTest`: packageTitle
+
+### Summary statistics-based association test for
+
+identifying the pleiotropic effects with set of genetic variants.
+
+If you use `ThreeWayTest`, please cite:
 
 <!-- Modify this by editing the file: inst/CITATION  -->
 
@@ -100,27 +111,20 @@ If you use `templateR`, please cite:
 ``` r
 if(!require("remotes")) install.packages("remotes")
 
-remotes::install_github("https://github.com/neurogenomics/templateR")
-library(templateR)
+remotes::install_github("bschilder/ThreeWayTest")
+library(ThreeWayTest)
 ```
 
 ## Documentation
 
-### [Website](https://neurogenomics.github.io/templateR)
+### [Website](https://bschilder.github.io/ThreeWayTest)
 
-### [Getting started](https://neurogenomics.github.io/templateR/articles/templateR)
+### [Getting started](https://bschilder.github.io/ThreeWayTest/articles/ThreeWayTest)
 
 <hr>
 
 ## Contact
 
-### [Neurogenomics Lab](https://www.neurogenomics.co.uk/)
-
-UK Dementia Research Institute  
-Department of Brain Sciences  
-Faculty of Medicine  
-Imperial College London  
-[GitHub](https://github.com/neurogenomics)  
-[DockerHub](https://hub.docker.com/orgs/neurogenomicslab)
+For any more detailed questions, please contact: <budeliang@yeah.net>
 
 <br>
