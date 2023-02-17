@@ -51,9 +51,9 @@ true_cov_mat_generation_autoregressive<-function(m,
 MGAS<-function(z_vector,
                est_genetic_cor,
                est_pheno_cor){
-  X <- kronecker(est_genetic_cor,est_pheno_cor,FUN = "*")
+  X <- methods::kronecker(est_genetic_cor,est_pheno_cor,FUN = "*")
   beta = c(0.3867,0.0021,-0.1347,-0.0104,0.7276,0.0068)
-  p_value<-pchisq(z_vector^2,1,lower.tail = F) # original p-value
+  p_value<-stats::pchisq(z_vector^2,1,lower.tail = F) # original p-value
   tmp=sort(p_value,index.return=T)
   pj=tmp$x # sorted p-values
   iorder=tmp$ix # index
@@ -202,7 +202,7 @@ metaCCA <- function(est_genetic_cov,
 standard_chisq<-function(z_vector,
                          correlation_matrix){
   chi_stat<-t(z_vector)%*%MASS::ginv(correlation_matrix)%*%z_vector
-  pvalue<-pchisq(chi_stat,length(z_vector),lower.tail = FALSE)
+  pvalue<-stats::pchisq(chi_stat,length(z_vector),lower.tail = FALSE)
   pvalue<-as.numeric(pvalue)
   return(pvalue)
 }

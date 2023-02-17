@@ -17,13 +17,14 @@ Encoding: UTF-8
 Depends: R (>= 4.0.2)
 biocViews:
 Imports:
+    methods,
+    stats,
     matlib,
     MASS,
     MSKAT,
     AssocTests
 Suggests:
     rworkflows,
-    methods,
     markdown,
     rmarkdown,
     remotes,
