@@ -11,7 +11,7 @@ An object of class \code{integer} of length 16656.
 data("gene_length_list")
 }
 \description{
-(add description) 
+Number of SNPs contains in each gene.
 \code{
 load(file.path("data","gene_length_list.Rdata"))
 usethis::use_data(gene_length_list, overwrite = TRUE)

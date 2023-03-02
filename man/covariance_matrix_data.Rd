@@ -11,8 +11,9 @@ An object of class \code{data.frame} with 38436 rows and 13 columns.
 data("covariance_matrix_data")
 }
 \description{
-The used data for calculating phenotype covariance gene list. 
-(expand description) 
+Part of Polyunsaturated fatty acids data after LD pruning to calculate 
+phenotype covariance matrix. Detailed description is the same as 
+data_matrix_final. 
 \code{
 load(file.path("data","covariance_matrix_estimated.Rdata"))
 usethis::use_data(covariance_matrix_data, overwrite = TRUE)

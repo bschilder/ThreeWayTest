@@ -1,13 +1,13 @@
 Package: ThreeWayTest
 Type: Package
-Title: packageTitle
-Version: 0.99.0
+Title: ThreeWayTest
+Version: 1.0.0
 Authors@R: c( 
-     person(given = "yourGivenName",
-           family = "yourFamilyName",
+     person(given = "Deliang",
+           family = "Bu",
            role = c("cre"),
-           email = "yourEmail@email.com",
-           comment = c(ORCID = "yourOrcidId"))
+           email = "budeliang@cueb.edu.cn",
+           comment = c(ORCID = "0000-0001-9939-5708"))
     )
 Description: Summary statistics-based association test for 
     identifying the pleiotropic effects with set of genetic variants.
@@ -17,10 +17,7 @@ Encoding: UTF-8
 Depends: R (>= 4.0.2)
 biocViews:
 Imports:
-    matlib,
     MASS,
-    MSKAT,
-    AssocTests
 Suggests:
     rworkflows,
     methods,

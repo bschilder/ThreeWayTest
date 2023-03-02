@@ -11,8 +11,20 @@ An object of class \code{data.frame} with 196036 rows and 13 columns.
 data("data_matrix_final")
 }
 \description{
-matrix of real data.
-(expand description) 
+Data matrix of Polyunsaturated fatty acids in real data analysis。
+CHR is the chromesome number.
+SNP is the number of SNP.
+BP is the poisition of the SNP.
+ANNOT is gene that this SNP is annoted to.
+Other Allele is the  allele that counts as 0.
+Effect Allele is the allele that counts as 1.
+MAF is the allele frequency of other allele.
+The last 6 columns of wAA, wALA, wDHA, wEDA, wEPA and wLA is the 
+wald test statistics of 6 phenotypes: arachidonic acid, 
+alpha-linolenic acid, docosahexanoic acid, eicosadienoic acid
+and eicosapentanoic acid.
+For original data and more detailed data description, please visit:
+https://grasp.nhlbi.nih.gov/FullResults.aspx. The data is in Year 2009 (2).
 \code{
 load(file.path("data","data_matrix_final.Rdata"))
 usethis::use_data(data_matrix_final, overwrite = TRUE)

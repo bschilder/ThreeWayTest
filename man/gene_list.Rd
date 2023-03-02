@@ -11,7 +11,7 @@ An object of class \code{character} of length 16656.
 data("gene_list")
 }
 \description{
-(add description) 
+List of gene names for performing real data analysis.
 \code{
 load(file.path("data","gene_list.Rdata"))
 usethis::use_data(gene_list, overwrite = TRUE)
