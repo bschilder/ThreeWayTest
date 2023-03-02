@@ -4,11 +4,25 @@
 \alias{generate_null_distribution_T3}
 \title{generate_null_distribution_T3}
 \usage{
-generate_null_distribution_T3(m, n, correlation_matrix, cutoff_value)
+generate_null_distribution_T3(m, n, cov_mat, cutoff_value)
+}
+\arguments{
+\item{m}{Dimension.}
+
+\item{n}{Number of the generated sample size.}
+
+\item{cov_mat}{Covariance matrix for generating random samples.}
+
+\item{cutoff_value}{Truncated value, should be in 0 to 1 and must contain 1.}
+}
+\value{
+Null distribution matrix with number of rows equal n and number of columns equal length of cutoff value minus 1.
 }
 \description{
-This function generate the null distribution of T_eta, should be run before calculating TWT
-output generated null distribution for function approximate_distribution_coefficient_estimate_T3
-Please see Setp 2 in our manuscript for more information
-m stantds for the dimension, n is the number of sample size
+This function generate the null distribution of T_eta, should be run before calculating TWT.
+Please see Setp 2 in our manuscript for more information.
+}
+\examples{
+ThreeWayTest::generate_null_distribution_T3(m=6,n=1000,
+cov_mat=diag(nrow = 6, ncol = 6), cutoff_value=c(0.2,0.4,0.6,0.8,1))
 }
