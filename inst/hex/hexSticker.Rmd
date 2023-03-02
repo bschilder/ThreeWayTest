@@ -1,0 +1,97 @@
+---
+title: "hexSticker"
+date: "<h4>Updated: <i>`r format( Sys.Date(), '%b-%d-%Y')`</i></h4>"
+output:
+  BiocStyle::html_document
+vignette: >
+  %\VignetteIndexEntry{hexSticker}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, echo=FALSE, include=TRUE}
+pkg <- read.dcf(here::here("DESCRIPTION"), fields = "Package")[1]
+description <- read.dcf(here::here("DESCRIPTION"), fields = "Description")[1]
+
+# If you're using R<4.1.1, need this version of rvcheck
+# devtools::install_version('rvcheck',version='0.1.8') 
+library(hexSticker)
+library(dplyr)
+library(ggplot2)
+library(ggimage)
+# library(ggpattern)# remotes::install_github("coolbutuseless/ggpattern")
+```
+
+You can make awesome hex stickers for your R packages using:
+
+- [hexSticker](https://github.com/GuangchuangYu/hexSticker)  
+- [ggimage](https://github.com/GuangchuangYu/ggimage) 
+lets you render images as data points.  
+- [ggpattern](https://coolbutuseless.github.io/package/ggpattern/)
+lets you fill objects with patterns or images.
+- [magick](https://cran.r-project.org/web/packages/magick/vignettes/intro.html) 
+modify PNGs.
+
+# `r pkg`
+
+## File path
+
+Create file path to save hex sticker to.
+
+```{r}
+filename <- here::here("inst/hex/hex.png")
+dir.create(dirname(filename), showWarnings = FALSE, recursive = TRUE)
+```
+
+## Subplot
+
+```{r}
+dat <- ThreeWayTest::data_matrix_final
+dat$GENE <- stringr::str_split(dat$ANNOT,"\\(",simplify = TRUE)[,1]
+t1 <- gsub("\\|","",tolower(stringr::str_split(dat$ANNOT,"=",simplify = TRUE)[,2]))
+t2 <- gsub("\\|","",tolower(stringr::str_split(dat$ANNOT,"=",simplify = TRUE)[,3]))
+dat$TYPE  <- data.table::fcoalesce(ifelse(t1=="",NA,t1), ifelse(t2=="",NA,t2))
+#### Subset data ####
+dat <- dat[1:50,]
+
+X <- as.matrix(dat[,grep("^w",names(dat), value = TRUE)],) |> `rownames<-`(
+    dat$SNP
+)
+
+h <- heatmaply::heatmaply(X,
+                          row_side_colors = dat[,c("TYPE","GENE")],
+                          row_side_palette = pals::ocean.balance,
+                          k_row = 10,
+                          hide_colorbar = FALSE)
+```
+
+
+
+## hexSticker 
+
+```{r}    
+s_size = 1.5
+stick <- hexSticker::sticker( 
+  subplot = gp,
+  #### Package name ####
+  package = pkg, p_size=20, p_y = 1.5,
+  #### Subplot #####
+  s_x=1, s_y=1,  s_height = s_size, s_width = s_size,
+  #### Fill & border ####
+  h_fill = "#0e326d", h_color = "#44c7fd",
+  #### Spotlight ####
+  spotlight = TRUE, l_alpha = .3, l_width = 10,
+  #### File output ####
+  filename = filename, dpi = 300)
+print(stick)
+```
+
+# Session Info 
+
+<details> 
+
+```{r Session Info}
+utils::sessionInfo()
+```
+
+</details>  

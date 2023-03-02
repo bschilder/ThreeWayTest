@@ -16,10 +16,12 @@ generate_null_distribution_T3(m, n, cov_mat, cutoff_value)
 \item{cutoff_value}{Truncated value, should be in 0 to 1 and must contain 1.}
 }
 \value{
-Null distribution matrix with number of rows equal n and number of columns equal length of cutoff value minus 1.
+Null distribution matrix with number of rows equal n and number of 
+columns equal length of cutoff value minus 1.
 }
 \description{
-This function generate the null distribution of T_eta, should be run before calculating TWT.
+This function generate the null distribution of T_eta,
+ should be run before calculating TWT.
 Please see Setp 2 in our manuscript for more information.
 }
 \examples{

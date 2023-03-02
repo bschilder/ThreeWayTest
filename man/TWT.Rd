@@ -7,7 +7,9 @@
 TWT(z_mat, est_genetic_cor, est_pheno_cor, cutoff_value, coefficient_matrix)
 }
 \arguments{
-\item{z_mat}{is the matrix of z_scores with row number of rows stands for number of phenotypes and number of columns stands for the number of variants.}
+\item{z_mat}{is the matrix of z_scores with row number of rows stands for
+the number of phenotypes and number of columns
+ stands for the number of variants.}
 
 \item{est_genetic_cor}{Estimated correlation matrix of genetic variants.}
 
@@ -15,7 +17,8 @@ TWT(z_mat, est_genetic_cor, est_pheno_cor, cutoff_value, coefficient_matrix)
 
 \item{cutoff_value}{Set Omega.}
 
-\item{coefficient_matrix}{Calculated based on function approximate_distribution_coefficient_estimate_T3.}
+\item{coefficient_matrix}{Calculated based on function 
+\link[ThreeWayTest]{approximate_distribution_coefficient_estimate_T3}.}
 }
 \value{
 p_value_final P_value of TWT.
@@ -33,7 +36,9 @@ This is the method of TWT.
 z_mat<-MASS::mvrnorm(5,mu=rep(0,5), Sigma = diag(nrow = 5, ncol = 5))
 null_distribution<-ThreeWayTest::generate_null_distribution_T3(m=25,
 n=1000,cov_mat=diag(nrow = 25,ncol= 25), cutoff_value=c(0.2,0.4,0.6,0.8,1))
-coefficient_matrix<-ThreeWayTest::approximate_distribution_coefficient_estimate_T3(null_distribution)
+coefficient_matrix<-
+    ThreeWayTest::approximate_distribution_coefficient_estimate_T3(
+        null_distribution_matrix = null_distribution)
 ThreeWayTest::TWT(z_mat=z_mat, est_genetic_cor=diag(nrow = 5, ncol = 5), 
 est_pheno_cor=diag(nrow = 5, ncol = 5), cutoff_value=c(0.2,0.4,0.6,0.8,1), 
 coefficient_matrix=coefficient_matrix)

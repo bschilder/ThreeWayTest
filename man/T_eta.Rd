@@ -7,7 +7,8 @@
 T_eta(z_vector, cov_mat, eta)
 }
 \arguments{
-\item{z_vector}{Column vectorized data matrix with rows represent phenotype and columns represent genotype.}
+\item{z_vector}{Column vectorized data matrix with rows represent 
+phenotype and columns represent genotype.}
 
 \item{cov_mat}{Estimated covariance matrix of z_vector.}
 

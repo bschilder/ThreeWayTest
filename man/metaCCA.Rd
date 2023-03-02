@@ -11,7 +11,8 @@ metaCCA(est_genetic_cov, est_pheno_cov, est_XY_cov, N)
 
 \item{est_pheno_cov}{Estimated phenotype correlation matrix.}
 
-\item{est_XY_cov}{Estimated correlation matrix between genotype and phenotype.}
+\item{est_XY_cov}{Estimated correlation matrix between 
+genotype and phenotype.}
 
 \item{N}{Sample size.}
 }

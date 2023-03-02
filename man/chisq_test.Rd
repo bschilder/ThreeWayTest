@@ -7,7 +7,8 @@
 chisq_test(z_vector, cov_mat)
 }
 \arguments{
-\item{z_vector}{Column vectorized data matrix with rows represent phenotype and columns represent genotype.}
+\item{z_vector}{Column vectorized data matrix with rows represent
+phenotype and columns represent genotype.}
 
 \item{cov_mat}{Estimated covariance matrix of z_vector.}
 }
@@ -18,6 +19,9 @@ A numeric value represent the p value of chi-square test.
 This is traditional chisq_test.
 }
 \examples{
-z_vector<-MASS::mvrnorm(1,mu=rep(0,9),Sigma = diag(nrow = 9, ncol = 9))
-ThreeWayTest::chisq_test(z_vector=z_vector, cov_mat=diag(nrow = 9, ncol = 9))
+z_vector<-MASS::mvrnorm(n = 1,
+                        mu=rep(0,9),
+                        Sigma = diag(nrow = 9, ncol = 9))
+ThreeWayTest::chisq_test(z_vector=z_vector, 
+                         cov_mat=diag(nrow = 9, ncol = 9))
 }

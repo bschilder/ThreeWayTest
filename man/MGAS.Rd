@@ -7,7 +7,8 @@
 MGAS(z_vector, est_genetic_cor, est_pheno_cor)
 }
 \arguments{
-\item{z_vector}{Column vectorized data matrix with rows represent phenotype and columns represent genotype.}
+\item{z_vector}{Column vectorized data matrix with rows represent
+phenotype and columns represent genotype.}
 
 \item{est_genetic_cor}{Estimated phenotype correlation matrix.}
 
@@ -23,6 +24,7 @@ This is the method proposed by Van_MGAS
 z_vector<-MASS::mvrnorm(1,mu=rep(0,9),Sigma = diag(nrow = 9, ncol = 9))
 genotype_covariance<-diag(nrow = 3,ncol = 3)
 phenotype_covariance<-diag(nrow = 3,ncol = 3)
-ThreeWayTest::MGAS(z_vector=z_vector, 
-est_genetic_cor = genotype_covariance, est_pheno_cor =phenotype_covariance)
+ThreeWayTest::MGAS(z_vector=z_vector,
+                   est_genetic_cor = genotype_covariance, 
+                   est_pheno_cor =phenotype_covariance)
 }

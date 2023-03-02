@@ -8,7 +8,7 @@
 #' @examples
 #' ThreeWayTest::gen_autoregressive(6,0.5)
 gen_autoregressive<-function(m,
-                                                 rho){
+                             rho){
   cov_mat<-matrix(0,m,m)
   for (i in 1:m){
     for (j in 1:m){
@@ -22,22 +22,26 @@ gen_autoregressive<-function(m,
 #' MGAS
 #'
 #' This is the method proposed by Van_MGAS
-#' @param z_vector Column vectorized data matrix with rows represent phenotype and columns represent genotype.
+#' @param z_vector Column vectorized data matrix with rows represent
+#'  phenotype and columns represent genotype.
 #' @param est_genetic_cor Estimated phenotype correlation matrix.
 #' @param est_pheno_cor Estimated genotype correlation matrix.
 #' @returns A numeric value represents the p value of MGAS.
+#' 
 #' @export
+#' @importFrom stats pchisq
 #' @examples
 #' z_vector<-MASS::mvrnorm(1,mu=rep(0,9),Sigma = diag(nrow = 9, ncol = 9))
 #' genotype_covariance<-diag(nrow = 3,ncol = 3)
 #' phenotype_covariance<-diag(nrow = 3,ncol = 3)
-#' ThreeWayTest::MGAS(z_vector=z_vector, 
-#' est_genetic_cor = genotype_covariance, est_pheno_cor =phenotype_covariance)
+#' ThreeWayTest::MGAS(z_vector=z_vector,
+#'                    est_genetic_cor = genotype_covariance, 
+#'                    est_pheno_cor =phenotype_covariance)
 MGAS<-function(z_vector,est_genetic_cor,est_pheno_cor){
   X <- kronecker(est_genetic_cor,est_pheno_cor,FUN = "*")
   beta = c(0.3867,0.0021,-0.1347,-0.0104,0.7276,0.0068)
-  p_value<-stats::pchisq(z_vector^2,1,lower.tail = F) 
-  tmp=sort(p_value,index.return=T) 
+  p_value<-stats::pchisq(z_vector^2,1,lower.tail = FALSE) 
+  tmp=sort(p_value,index.return=TRUE) 
   pj=tmp$x 
   iorder=tmp$ix
   length = ncol(est_genetic_cor)*ncol(est_pheno_cor)
@@ -48,7 +52,8 @@ MGAS<-function(z_vector,est_genetic_cor,est_pheno_cor){
     for (i2 in 1:i1) {
       if (i1>i2) {
         er=r2[i1,i2]
-        ro[i1,i2]=ro[i2,i1]= beta[1]*er^6+beta[2]*er^5+beta[3]*er^4+beta[4]*er^3+beta[5]*er^2+beta[6]*er
+        ro[i1,i2]=ro[i2,i1]= beta[1]*er^6+beta[2]*er^5+beta[3]*er^4+beta[4]*
+            er^3+beta[5]*er^2+beta[6]*er
       }}}
   alllam=eigen(ro[1:length,1:length])$values
   qepj=length 
@@ -157,7 +162,8 @@ shrinkPSD <- function(R,
 #' This is the main function of metaCCA.
 #' @param est_genetic_cov Estimated genotype correlation matrix.
 #' @param est_pheno_cov Estimated phenotype correlation matrix.
-#' @param est_XY_cov Estimated correlation matrix between genotype and phenotype.
+#' @param est_XY_cov Estimated correlation matrix between 
+#' genotype and phenotype.
 #' @param N Sample size.
 #' @returns A numeric value represents the p value of metaCCA.
 #' @export
@@ -171,7 +177,8 @@ metaCCA <- function(est_genetic_cov,
                     est_pheno_cov,
                     est_XY_cov,
                     N){
-  M<-rbind(cbind(est_genetic_cov,est_XY_cov),cbind(t(est_XY_cov),est_pheno_cov))
+  M<-rbind(cbind(est_genetic_cov,est_XY_cov),
+           cbind(t(est_XY_cov),est_pheno_cov))
   M_shrink <- shrinkPSD(M,ncol(est_genetic_cov))
   p_metacca<-myCCA(M_shrink[[1]],M_shrink[[2]],M_shrink[[3]],N)
   return(p_metacca[1])
@@ -181,14 +188,18 @@ metaCCA <- function(est_genetic_cov,
 #' chisq_test
 #' 
 #' This is traditional chisq_test.
-#' @param z_vector Column vectorized data matrix with rows represent phenotype and columns represent genotype.
+#' @param z_vector Column vectorized data matrix with rows represent
+#'  phenotype and columns represent genotype.
 #' @param cov_mat Estimated covariance matrix of z_vector.
 #' @returns A numeric value represent the p value of chi-square test.
 #' @importFrom MASS ginv
 #' @export
 #' @examples
-#' z_vector<-MASS::mvrnorm(1,mu=rep(0,9),Sigma = diag(nrow = 9, ncol = 9))
-#' ThreeWayTest::chisq_test(z_vector=z_vector, cov_mat=diag(nrow = 9, ncol = 9))
+#' z_vector<-MASS::mvrnorm(n = 1,
+#'                         mu=rep(0,9),
+#'                         Sigma = diag(nrow = 9, ncol = 9))
+#' ThreeWayTest::chisq_test(z_vector=z_vector, 
+#'                          cov_mat=diag(nrow = 9, ncol = 9))
 chisq_test<-function(z_vector,
                          cov_mat){
   chi_stat<-t(z_vector)%*%MASS::ginv(cov_mat)%*%z_vector
@@ -200,7 +211,8 @@ chisq_test<-function(z_vector,
 #' T_eta
 #' 
 #' Calculation of T_eta with eta fixed.
-#' @param z_vector Column vectorized data matrix with rows represent phenotype and columns represent genotype.
+#' @param z_vector Column vectorized data matrix with rows represent 
+#' phenotype and columns represent genotype.
 #' @param cov_mat Estimated covariance matrix of z_vector.
 #' @param eta Truncated value.
 #' @returns A numeric value represent calculated statistic T_eta.
@@ -211,8 +223,8 @@ chisq_test<-function(z_vector,
 #' ThreeWayTest::T_eta(z_vector=z_vector, 
 #' cov_mat=diag(nrow = 9, ncol = 9), eta=0.5)
 T_eta<-function(z_vector,
-                            cov_mat,
-                            eta){
+                cov_mat,
+                eta){
   index<-ceiling(length(z_vector)*eta)
   z_vector_order<-order(abs(z_vector),decreasing = TRUE)
   ordered_z_vector<-z_vector[z_vector_order]
@@ -226,13 +238,15 @@ T_eta<-function(z_vector,
 
 #' generate_null_distribution_T3
 #' 
-#' This function generate the null distribution of T_eta, should be run before calculating TWT.
+#' This function generate the null distribution of T_eta,
+#'  should be run before calculating TWT.
 #' Please see Setp 2 in our manuscript for more information.
 #' @param m Dimension.
 #' @param n Number of the generated sample size.  
 #' @param cov_mat Covariance matrix for generating random samples.
 #' @param cutoff_value Truncated value, should be in 0 to 1 and must contain 1.
-#' @returns Null distribution matrix with number of rows equal n and number of columns equal length of cutoff value minus 1.
+#' @returns Null distribution matrix with number of rows equal n and number of 
+#' columns equal length of cutoff value minus 1.
 #' @importFrom MASS mvrnorm
 #' @export
 #' @examples 
@@ -247,7 +261,8 @@ generate_null_distribution_T3<-function(m,
   null_distribution_matrix<-matrix(0,nrow = n, ncol = length(cutoff_value)-1)
   for (i in 1:(length(cutoff_value)-1)) {
     for (j in 1:n) {
-      null_distribution_matrix[j,i]<-T_eta(bootstrap_data[j,],cov_mat,cutoff_value[i])
+      null_distribution_matrix[j,i]<-T_eta(z_vector = bootstrap_data[j,],
+                                           cov_mat,cutoff_value[i])
     }
   }
   return(null_distribution_matrix)
@@ -255,7 +270,8 @@ generate_null_distribution_T3<-function(m,
 
 #' coefficient_estimate
 #' 
-#' This function estimate the coeffcient of T3 with null distribution generated by  generate_null_distribution_T3.
+#' This function estimate the coeffcient of T3 with null distribution 
+#' generated by generate_null_distribution_T3.
 #' Please see Setp 2 in our manuscript for more information.
 #' @param null_distribution Generated by generate_null_distribution_T3
 #' @returns List of coefficient of alpha, beta and d.
@@ -278,7 +294,8 @@ coefficient_estimate<-function(null_distribution){
 
 #' approximate_distribution_coefficient_estimate_T3
 #' 
-#' This function estimate the coeffcient of T3 with null distribution generated by  generate_null_distribution_T3.
+#' This function estimate the coeffcient of T3 with null distribution 
+#' generated by  generate_null_distribution_T3.
 #' Please see Setp 2 in our manuscript for more information.
 #' @param null_distribution_matrix Generated by generate_null_distribution_T3
 #' @returns Coefficient matrix of alpha, beta and d.
@@ -286,8 +303,11 @@ coefficient_estimate<-function(null_distribution){
 #' @examples 
 #' null_distribution<-ThreeWayTest::generate_null_distribution_T3(m=6,n=1000,
 #' cov_mat=diag(nrow = 6, ncol = 6), cutoff_value=c(0.2,0.4,0.6,0.8,1))
-#' ThreeWayTest::approximate_distribution_coefficient_estimate_T3(null_distribution)
-approximate_distribution_coefficient_estimate_T3<-function(null_distribution_matrix){
+#' coefficient_matrix <- 
+#'     ThreeWayTest::approximate_distribution_coefficient_estimate_T3(
+#'     null_distribution_matrix = null_distribution)
+approximate_distribution_coefficient_estimate_T3<-
+    function(null_distribution_matrix){
   coefficient_matrix<-matrix(0,nrow = 3,ncol = ncol(null_distribution_matrix))
   for (i in 1:ncol(null_distribution_matrix)) {
     coefficient<-coefficient_estimate(null_distribution_matrix[,i])
@@ -301,7 +321,8 @@ approximate_distribution_coefficient_estimate_T3<-function(null_distribution_mat
 #' T_3
 #' 
 #' This is the function calculating T3.
-#' @param z_vector Column vectorized data matrix with rows represent phenotype and columns represent genotype.
+#' @param z_vector Column vectorized data matrix with rows 
+#' represent phenotype and columns represent genotype.
 #' @param cov_mat Estimated covariance matrix of z_vector.
 #' @param cutoff_value Vector of truncated value eta.
 #' @param coefficient_matrix Matrix of alpha, beta and d.
@@ -312,7 +333,9 @@ approximate_distribution_coefficient_estimate_T3<-function(null_distribution_mat
 #' z_vector<-MASS::mvrnorm(1,mu=rep(0,10), Sigma = diag(nrow = 10, ncol = 10))
 #' null_distribution<-ThreeWayTest::generate_null_distribution_T3(m=10,n=1000,
 #' cov_mat=diag(nrow = 10,ncol= 10), cutoff_value=c(0.2,0.4,0.6,0.8,1))
-#' coefficient_matrix<-ThreeWayTest::approximate_distribution_coefficient_estimate_T3(null_distribution)
+#' coefficient_matrix<-
+#'     ThreeWayTest::approximate_distribution_coefficient_estimate_T3(
+#'         null_distribution_matrix = null_distribution)
 #' ThreeWayTest::T_3(z_vector=z_vector, cov_mat=diag(nrow = 10, ncol = 10), 
 #' cutoff_value=c(0.2,0.4,0.6,0.8,1), coefficient_matrix=coefficient_matrix)
 T_3<-function(z_vector,
@@ -322,7 +345,9 @@ T_3<-function(z_vector,
   pvalue<-rep(0,length(cutoff_value))
   for (i in 1:(length(cutoff_value)-1)) {
     stat_TWT<-T_eta(z_vector,cov_mat,cutoff_value[i])
-    pvalue[i]<-stats::pgamma((stat_TWT-coefficient_matrix[2,i])/(coefficient_matrix[1,i]),shape = coefficient_matrix[3,i]/2,rate = 1/2,lower.tail = F)
+    pvalue[i]<-stats::pgamma(
+        (stat_TWT-coefficient_matrix[2,i])/(coefficient_matrix[1,i]),
+        shape = coefficient_matrix[3,i]/2,rate = 1/2,lower.tail = FALSE)
   }
   pvalue[length(cutoff_value)]<-chisq_test(z_vector,cov_mat)
   cauchy_statistic<-(1/length(pvalue))*sum(tan((0.5-pvalue)*pi))
@@ -333,25 +358,30 @@ T_3<-function(z_vector,
 #' TWT
 #'
 #' This is the method of TWT.
-#' @param z_mat is the matrix of z_scores with row number of rows stands for number of phenotypes and number of columns stands for the number of variants.
+#' @param z_mat is the matrix of z_scores with row number of rows stands for
+#' the number of phenotypes and number of columns
+#'  stands for the number of variants.
 #' @param est_genetic_cor Estimated correlation matrix of genetic variants.
 #' @param est_pheno_cor Estimated correlation matrix of phenotypes.
 #' @param cutoff_value Set Omega.
-#' @param coefficient_matrix Calculated based on function approximate_distribution_coefficient_estimate_T3.
+#' @param coefficient_matrix Calculated based on function 
+#' \link[ThreeWayTest]{approximate_distribution_coefficient_estimate_T3}.
 #' @returns p_value_final P_value of TWT.
 #' @returns p_1 P_value of T_1.
 #' @returns p_2 P_value of T_2.
 #' @returns p_3 P_value of T_3.
+#' 
 #' @export
 #' @examples 
 #' z_mat<-MASS::mvrnorm(5,mu=rep(0,5), Sigma = diag(nrow = 5, ncol = 5))
 #' null_distribution<-ThreeWayTest::generate_null_distribution_T3(m=25,
 #' n=1000,cov_mat=diag(nrow = 25,ncol= 25), cutoff_value=c(0.2,0.4,0.6,0.8,1))
-#' coefficient_matrix<-ThreeWayTest::approximate_distribution_coefficient_estimate_T3(null_distribution)
+#' coefficient_matrix<-
+#'     ThreeWayTest::approximate_distribution_coefficient_estimate_T3(
+#'         null_distribution_matrix = null_distribution)
 #' ThreeWayTest::TWT(z_mat=z_mat, est_genetic_cor=diag(nrow = 5, ncol = 5), 
 #' est_pheno_cor=diag(nrow = 5, ncol = 5), cutoff_value=c(0.2,0.4,0.6,0.8,1), 
 #' coefficient_matrix=coefficient_matrix)
-
 TWT<-function(z_mat, 
               est_genetic_cor, 
               est_pheno_cor, 

@@ -1,7 +1,7 @@
 Package: ThreeWayTest
 Type: Package
 Title: ThreeWayTest
-Version: 1.0.0
+Version: 1.0.1
 Authors@R: c( 
      person(given = "Deliang",
            family = "Bu",
@@ -14,10 +14,11 @@ Description: Summary statistics-based association test for
 URL: https://github.com/bschilder/ThreeWayTest
 BugReports: https://github.com/bschilder/ThreeWayTest/issues
 Encoding: UTF-8
-Depends: R (>= 4.0.2)
+Depends: R (>= 4.0.0)
 biocViews:
 Imports:
     MASS,
+    methods
 Suggests:
     rworkflows,
     markdown,
@@ -34,3 +35,4 @@ VignetteBuilder: knitr
 License: GPL-3
 Config/testthat/edition: 3
 LazyData: true
+LazyDataCompression: gzip

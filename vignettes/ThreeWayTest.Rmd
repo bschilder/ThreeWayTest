@@ -1,8 +1,8 @@
 ---
-title: "getting_start"
+title: "`ThreeWayTest`: Getting started"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{getting_start}
+  %\VignetteIndexEntry{ThreeWayTest}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
