@@ -1,0 +1,108 @@
+---
+title: "getting_start"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{getting_start}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = T}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+
+library(ThreeWayTest)
+
+# Simulation
+
+## Load data
+
+data("data_matrix_final") 
+data("covariance_matrix_data")
+data("gene_list")
+data("gene_length_list") 
+data("selected_genotype")
+data("PCA_result") 
+
+##Set basic coefficient
+
+covariates<-PCA_result$principal.coordinates[,1:2]
+n_sim=10
+q=6
+gamma_value<-1
+phenotype_covariance<-stats::cor(covariance_matrix_data[8:13])
+select_gene<-gene_list[9592]
+match_char=paste(select_gene,"\\(",sep = "")
+match_line=which(grepl(match_char,data_matrix_final$ANNOT))
+genotype_data<-t(selected_genotype[,7:2510])
+adj_geno<-stats::lm(genotype_data~covariates)$residuals
+genotype_covariance<-stats::cor(adj_geno)
+n_sample<-nrow(genotype_data)
+geno_length<-ncol(genotype_data)
+cutoff_value<-seq(from=0.1,to=1,by=0.1)
+c<-as.matrix(rnorm(2504,0,1))
+gamma_vec<-as.matrix(rep(gamma_value,q))
+c_mat<-c%*%t(gamma_vec)
+covariance_matrix<-stats::cor(covariance_matrix_data[8:13])
+B_mat<-matrix(0, nrow = geno_length, ncol = q)
+B_mat[6,1]=0.1
+B_mat[6,3]=-0.1
+B_mat[6,5]=-0.1
+est_pheno_rho_mat<-covariance_matrix
+total_mat<-methods::kronecker(genotype_covariance,est_pheno_rho_mat)
+
+##Generate null distribution and calculate coefficient for T3
+
+null_distribution_T3<-ThreeWayTest::generate_null_distribution_T3(
+    m = q*geno_length,
+    n = 10000,
+    cov_mat = total_mat,
+    cutoff_value = cutoff_value)
+coefficient_matrix_T3<-approximate_distribution_coefficient_estimate_T3(
+    null_distribution_matrix = null_distribution_T3)
+
+##Create variables  for storage
+
+p_value_MGAS<-rep(NA,n_sim)
+p_value_TWT<-rep(NA,n_sim)
+p_value_metaCCA<-rep(NA,n_sim)
+p_1<-rep(NA,n_sim)
+p_2<-rep(NA,n_sim)
+p_3<-rep(NA,n_sim)
+
+##Main simulation function
+
+for (i in 1:n_sim) {
+  eplison<- MASS::mvrnorm(n=n_sample,rep(0,q),covariance_matrix)
+  Y_mat<-genotype_data%*%B_mat+c_mat+eplison
+  Z_mat<-matrix(NA,ncol(genotype_data),ncol(Y_mat))
+  std_beta_mat<-matrix(NA,ncol(genotype_data),ncol(Y_mat))
+  for (j in 1:ncol(genotype_data)) {
+    for (k in 1:ncol(Y_mat)) {
+      model<- stats::lm(Y_mat[,k]~genotype_data[,j]+covariates+c)
+      wald <- stats::coef(model)[2] / sqrt(diag(vcov(model)))[2]
+      Z_mat[j,k] <- wald
+      std_beta_mat[j,k]<- coef(model)[2]/sqrt(n_sample*(diag(vcov(model))[2]))
+    }
+  }
+  z_vector<-as.vector(t(Z_mat))
+  p_value_MGAS[i]<-ThreeWayTest::MGAS(z_vector,genotype_covariance,est_pheno_rho_mat)
+  result_TWT<-ThreeWayTest::TWT(t(Z_mat),genotype_covariance,est_pheno_rho_mat,cutoff_value,coefficient_matrix_T3)
+  p_value_TWT[i]<-result_TWT$p_value_final
+  p_1[i]<-result_TWT$p_1
+  p_2[i]<-result_TWT$p_2
+  p_3[i]<-result_TWT$p_3
+  p_value_metaCCA[i]<-ThreeWayTest::metaCCA(genotype_covariance,est_pheno_rho_mat,std_beta_mat,n_sample)
+  print(i)
+}
+
+##Display result
+
+sum(as.numeric(p_value_MGAS<0.001),na.rm = TRUE)
+sum(as.numeric(p_value_TWT<0.001),na.rm = TRUE)
+sum(as.numeric(p_value_metaCCA<0.001),na.rm = TRUE)
+sum(as.numeric(p_1<0.001),na.rm = TRUE)
+sum(as.numeric(p_2<0.001),na.rm = TRUE)
+sum(as.numeric(p_3<0.001),na.rm = TRUE)
