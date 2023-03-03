@@ -5,15 +5,15 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ThreeWayTest • ThreeWayTest</title>
+<title>Three Way Test for Identifying Pleiotropy • ThreeWayTest</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="bootstrap-toc.css">
 <script src="bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
-<script src="pkgdown.js"></script><meta property="og:title" content="ThreeWayTest">
+<script src="pkgdown.js"></script><meta property="og:title" content="Three Way Test for Identifying Pleiotropy">
 <meta property="og:description" content="Summary statistics-based association test for 
-    identifying the pleiotropic effects with set of genetic variants.">
+    identifying the pleiotropic effects with sets of genetic variants.">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -46,6 +46,18 @@
 <li>
   <a href="reference/index.html">Reference</a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+<li>
+      <a href="articles/docker.html">Docker/Singularity Containers</a>
+    </li>
+  </ul>
+</li>
 <li>
   <a href="news/index.html">Changelog</a>
 </li>
@@ -70,32 +82,25 @@
       </header><div class="row">
   <div class="contents col-md-9">
 
-<div class="section level1">
-<div class="page-header"><h1 id="threewaytest">ThreeWayTest<a class="anchor" aria-label="anchor" href="#threewaytest"></a>
-</h1></div>
-<a href="https://github.com/bschilder/ThreeWayTest" class="external-link"><img src="https://img.shields.io/badge/devel%20version-1.0.1-black.svg"></a> <a href="https://github.com/bschilder/ThreeWayTest/actions" class="external-link"><img src="https://github.com/bschilder/ThreeWayTest/workflows/rworkflows/badge.svg" alt="R build status"></a> <a href="https://github.com/bschilder/ThreeWayTest/commits/master" class="external-link"><img src="https://img.shields.io/github/last-commit/bschilder/ThreeWayTest.svg"></a> <a href="https://github.com/bschilder/ThreeWayTest" class="external-link"><img src="https://img.shields.io/github/languages/code-size/bschilder/ThreeWayTest.svg"></a> <a href="https://codecov.io/gh/bschilder/ThreeWayTest" class="external-link"><img src="https://codecov.io/gh/bschilder/ThreeWayTest/branch/master/graph/badge.svg"></a> <a href="https://cran.r-project.org/web/licenses/GPL-3" class="external-link"><img src="https://img.shields.io/badge/license-GPL--3-blue.svg" alt="License: GPL-3"></a> ¶
-<h4 id="threewaytest-1">
+<img src="https://github.com/bschilder/ThreeWayTest/raw/master/inst/hex/hex.png" height="600"><br><br><br><br><a href="https://github.com/bschilder/ThreeWayTest" class="external-link"><img src="https://img.shields.io/badge/devel%20version-1.0.1-black.svg"></a> <a href="https://github.com/bschilder/ThreeWayTest/actions" class="external-link"><img src="https://github.com/bschilder/ThreeWayTest/workflows/rworkflows/badge.svg" alt="R build status"></a> <a href="https://github.com/bschilder/ThreeWayTest/commits/master" class="external-link"><img src="https://img.shields.io/github/last-commit/bschilder/ThreeWayTest.svg"></a> <a href="https://github.com/bschilder/ThreeWayTest" class="external-link"><img src="https://img.shields.io/github/languages/code-size/bschilder/ThreeWayTest.svg"></a> <a href="https://codecov.io/gh/bschilder/ThreeWayTest" class="external-link"><img src="https://codecov.io/gh/bschilder/ThreeWayTest/branch/master/graph/badge.svg"></a> <a href="https://cran.r-project.org/web/licenses/GPL-3" class="external-link"><img src="https://img.shields.io/badge/license-GPL--3-blue.svg" alt="License: GPL-3"></a> ¶
+<h4>
 ¶ Authors: <i>Deliang Bu</i> ¶
-<a class="anchor" aria-label="anchor" href="#threewaytest-1"></a>
 </h4>
-<h4 id="threewaytest-2">
-¶ README updated: <i>Mar-02-2023</i> ¶
-<a class="anchor" aria-label="anchor" href="#threewaytest-2"></a>
+<h4>
+¶ README updated: <i>Mar-03-2023</i> ¶
 </h4>
 <!-- To modify Package/Title/Description/Authors fields, edit the DESCRIPTION file -->
-</div>
 <div class="section level1">
-<h1 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
-</h1>
+<div class="page-header"><h1 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
+</h1></div>
 <p>This Repository contains code and simulation for Three way test in submitted paper.</p>
 <div class="section level2">
-<h2 id="threewaytest-threewaytest">
-<code>ThreeWayTest</code>: ThreeWayTest<a class="anchor" aria-label="anchor" href="#threewaytest-threewaytest"></a>
+<h2 id="threewaytest-three-way-test-for-identifying-pleiotropy">
+<code>ThreeWayTest</code>: Three Way Test for Identifying Pleiotropy<a class="anchor" aria-label="anchor" href="#threewaytest-three-way-test-for-identifying-pleiotropy"></a>
 </h2>
 <div class="section level3">
-<h3 id="summary-statistics-based-association-test-for">Summary statistics-based association test for<a class="anchor" aria-label="anchor" href="#summary-statistics-based-association-test-for"></a>
+<h3 id="summary-statistics-based-association-test-for-identifying-the-pleiotropic-effects-with-sets-of-genetic-variants">Summary statistics-based association test for identifying the pleiotropic effects with sets of genetic variants.<a class="anchor" aria-label="anchor" href="#summary-statistics-based-association-test-for-identifying-the-pleiotropic-effects-with-sets-of-genetic-variants"></a>
 </h3>
-<p>identifying the pleiotropic effects with set of genetic variants.</p>
 <p>If you use <code>ThreeWayTest</code>, please cite:</p>
 <!-- Modify this by editing the file: inst/CITATION  -->
 <blockquote>
@@ -123,6 +128,11 @@
 <div class="section level3">
 <h3 id="getting-started">
 <a href="https://bschilder.github.io/ThreeWayTest/articles/ThreeWayTest" class="external-link">Getting started</a><a class="anchor" aria-label="anchor" href="#getting-started"></a>
+</h3>
+</div>
+<div class="section level3">
+<h3 id="dockersingularity-containers">
+<a href="https://bschilder.github.io/ThreeWayTest/articles/docker" class="external-link">Docker/Singularity containers</a><a class="anchor" aria-label="anchor" href="#dockersingularity-containers"></a>
 </h3>
 <hr>
 </div>

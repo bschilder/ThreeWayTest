@@ -7,6 +7,9 @@
     <loc>/articles/ThreeWayTest.html</loc>
   </url>
   <url>
+    <loc>/articles/docker.html</loc>
+  </url>
+  <url>
     <loc>/articles/index.html</loc>
   </url>
   <url>
@@ -40,6 +43,9 @@
     <loc>/reference/chisq_test.html</loc>
   </url>
   <url>
+    <loc>/reference/clustermap.html</loc>
+  </url>
+  <url>
     <loc>/reference/coefficient_estimate.html</loc>
   </url>
   <url>
@@ -65,6 +71,18 @@
   </url>
   <url>
     <loc>/reference/metaCCA.html</loc>
+  </url>
+  <url>
+    <loc>/reference/networkmap.html</loc>
+  </url>
+  <url>
+    <loc>/reference/networkmap_ggnetwork.html</loc>
+  </url>
+  <url>
+    <loc>/reference/networkmap_tidygraph.html</loc>
+  </url>
+  <url>
+    <loc>/reference/postprocess_data.html</loc>
   </url>
   <url>
     <loc>/reference/selected_genotype.html</loc>
