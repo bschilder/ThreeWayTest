@@ -1,5 +1,6 @@
 ThreeWayTest
 ================
+<img src= 'https://github.com/bschilder/ThreeWayTest/raw/master/inst/hex/hex.png' height= '300' ><br><br><br><br>
 [![](https://img.shields.io/badge/devel%20version-1.0.1-black.svg)](https://github.com/bschilder/ThreeWayTest)
 [![R build
 status](https://github.com/bschilder/ThreeWayTest/workflows/rworkflows/badge.svg)](https://github.com/bschilder/ThreeWayTest/actions)
