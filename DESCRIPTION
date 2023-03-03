@@ -18,7 +18,8 @@ Depends: R (>= 4.0.0)
 biocViews:
 Imports:
     MASS,
-    methods
+    methods,
+    data.table
 Suggests:
     rworkflows,
     markdown,
@@ -27,7 +28,12 @@ Suggests:
     knitr,
     covr,
     testthat (>= 3.0.0),
-    utils
+    utils,
+    heatmaply,
+    ggplot2,
+    tidygraph,
+    ggnetwork,
+    pals
 Remotes:
     github::baolinwu/MSKAT
 RoxygenNote: 7.2.3

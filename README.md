@@ -1,6 +1,6 @@
 ThreeWayTest
 ================
-[![](https://img.shields.io/badge/devel%20version-1.0.0-black.svg)](https://github.com/bschilder/ThreeWayTest)
+[![](https://img.shields.io/badge/devel%20version-1.0.1-black.svg)](https://github.com/bschilder/ThreeWayTest)
 [![R build
 status](https://github.com/bschilder/ThreeWayTest/workflows/rworkflows/badge.svg)](https://github.com/bschilder/ThreeWayTest/actions)
 [![](https://img.shields.io/github/last-commit/bschilder/ThreeWayTest.svg)](https://github.com/bschilder/ThreeWayTest/commits/master)
@@ -12,7 +12,7 @@ GPL-3](https://img.shields.io/badge/license-GPL--3-blue.svg)](https://cran.r-pro
 Authors: <i>Deliang Bu</i>  
 </h4>
 <h4>  
-README updated: <i>Mar-02-2023</i>  
+README updated: <i>Mar-03-2023</i>  
 </h4>
 
 <!-- To modify Package/Title/Description/Authors fields, edit the DESCRIPTION file -->
@@ -49,6 +49,8 @@ library(ThreeWayTest)
 ### [Website](https://bschilder.github.io/ThreeWayTest)
 
 ### [Getting started](https://bschilder.github.io/ThreeWayTest/articles/ThreeWayTest)
+
+### [Docker/Singularity containers](https://bschilder.github.io/ThreeWayTest/articles/docker)
 
 <hr>
 

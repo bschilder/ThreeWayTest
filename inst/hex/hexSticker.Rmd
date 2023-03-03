@@ -45,24 +45,50 @@ dir.create(dirname(filename), showWarnings = FALSE, recursive = TRUE)
 
 ## Subplot
 
+### Network
+
 ```{r}
 dat <- ThreeWayTest::data_matrix_final
-dat$GENE <- stringr::str_split(dat$ANNOT,"\\(",simplify = TRUE)[,1]
-t1 <- gsub("\\|","",tolower(stringr::str_split(dat$ANNOT,"=",simplify = TRUE)[,2]))
-t2 <- gsub("\\|","",tolower(stringr::str_split(dat$ANNOT,"=",simplify = TRUE)[,3]))
-dat$TYPE  <- data.table::fcoalesce(ifelse(t1=="",NA,t1), ifelse(t2=="",NA,t2))
-#### Subset data ####
-dat <- dat[1:50,]
+nm <- ThreeWayTest::networkmap(dat = dat)
+```
 
-X <- as.matrix(dat[,grep("^w",names(dat), value = TRUE)],) |> `rownames<-`(
-    dat$SNP
-)
+```{r}
+x <- nm$plot$data$x
+y <- nm$plot$data$y
+m=1
+tri <- data.frame(x = c(min(x)-m, max(x)/2, max(x)+m),
+                  y = c(max(y)+m, min(y)-m, max(y)+m)
+                  )
+theme_empty <- function(){
+    ggplot2::theme_void() +
+      ggplot2::theme(legend.position = "none", 
+                   panel.background = ggplot2::element_rect(fill = "transparent", colour = "transparent"), 
+                   plot.background = ggplot2::element_rect(fill = "transparent",colour = "transparent"))
+}
+p1 <-ggplot2::ggplot(data = tri, ggplot2::aes(x=x, y=y))+ 
+    ggplot2::geom_polygon() +
+    theme_empty()
+p2 <- nm$plot + theme_empty()
+    # ggplot2::scale_x_discrete(expand = ggplot2::expansion(mult = .8)) +
+    # ggplot2::scale_y_discrete(expand = ggplot2::expansion(mult = .8))
+f <- .9
+p1 + patchwork::inset_element(p2, 
+                              top = 1*f, 
+                              right = 1*f, 
+                              bottom = 0+(1-1*f), 
+                              left=0+(1-1*f), 
+                              align_to = "panel") 
+```
 
-h <- heatmaply::heatmaply(X,
-                          row_side_colors = dat[,c("TYPE","GENE")],
-                          row_side_palette = pals::ocean.balance,
-                          k_row = 10,
-                          hide_colorbar = FALSE)
+
+### aRtsy triangle
+
+```{r}
+set.seed(2024)
+colors <- ggplot2::alpha(pals::brewer.pastel2(n = 5),.75)
+ga <- aRtsy::canvas_ribbons(colors = colors[1:3],
+                            background = "transparent") #+ 
+    # ggplot2::scale_y_reverse()
 ```
 
 
@@ -70,15 +96,15 @@ h <- heatmaply::heatmaply(X,
 ## hexSticker 
 
 ```{r}    
-s_size = 1.5
+s_size = 1.95
 stick <- hexSticker::sticker( 
-  subplot = gp,
+  subplot = ga,
   #### Package name ####
-  package = pkg, p_size=20, p_y = 1.5,
+  package = pkg, p_size=15, p_y = 1.54,
   #### Subplot #####
-  s_x=1, s_y=1,  s_height = s_size, s_width = s_size,
+  s_x=1*.99, s_y=1,  s_height = s_size, s_width = s_size,
   #### Fill & border ####
-  h_fill = "#0e326d", h_color = "#44c7fd",
+  h_fill = colors[4], h_color = colors[5],
   #### Spotlight ####
   spotlight = TRUE, l_alpha = .3, l_width = 10,
   #### File output ####

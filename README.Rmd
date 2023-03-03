@@ -42,6 +42,7 @@ library(`r pkg`)
 
 ### [Website](https://`r owner`.github.io/`r repo`) 
 ### [Getting started](https://`r owner`.github.io/`r repo`/articles/`r pkg`) 
+### [Docker/Singularity containers](https://`r owner`.github.io/`r repo`/articles/docker) 
 
 <hr>
 
