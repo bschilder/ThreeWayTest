@@ -1,5 +1,3 @@
-ThreeWayTest
-================
 <img src= 'https://github.com/bschilder/ThreeWayTest/raw/master/inst/hex/hex.png' height= '300' ><br><br><br><br>
 [![](https://img.shields.io/badge/devel%20version-1.0.1-black.svg)](https://github.com/bschilder/ThreeWayTest)
 [![R build
@@ -23,11 +21,9 @@ README updated: <i>Mar-03-2023</i>
 This Repository contains code and simulation for Three way test in
 submitted paper.
 
-## `ThreeWayTest`: ThreeWayTest
+## `ThreeWayTest`: Three Way Test for Identifying Pleiotropy
 
-### Summary statistics-based association test for
-
-identifying the pleiotropic effects with set of genetic variants.
+### Summary statistics-based association test for identifying the pleiotropic effects with set of genetic variants.
 
 If you use `ThreeWayTest`, please cite:
 

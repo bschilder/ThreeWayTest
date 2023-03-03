@@ -1,6 +1,6 @@
 Package: ThreeWayTest
 Type: Package
-Title: ThreeWayTest
+Title: Three Way Test for Identifying Pleiotropy
 Version: 1.0.1
 Authors@R: c( 
      person(given = "Deliang",
