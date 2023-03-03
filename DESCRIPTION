@@ -10,7 +10,7 @@ Authors@R: c(
            comment = c(ORCID = "0000-0001-9939-5708"))
     )
 Description: Summary statistics-based association test for 
-    identifying the pleiotropic effects with set of genetic variants.
+    identifying the pleiotropic effects with sets of genetic variants.
 URL: https://github.com/bschilder/ThreeWayTest
 BugReports: https://github.com/bschilder/ThreeWayTest/issues
 Encoding: UTF-8
