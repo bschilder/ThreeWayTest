@@ -1,7 +1,7 @@
 Package: ThreeWayTest
 Type: Package
 Title: Three Way Test for Identifying Pleiotropy
-Version: 1.0.1
+Version: 1.0.2
 Authors@R: c( 
      person(given = "Deliang",
            family = "Bu",
@@ -19,7 +19,8 @@ biocViews:
 Imports:
     MASS,
     methods,
-    data.table
+    data.table,
+    tools
 Suggests:
     rworkflows,
     markdown,
@@ -33,7 +34,9 @@ Suggests:
     ggplot2,
     tidygraph,
     ggnetwork,
-    pals
+    pals,
+    piggyback,
+    gh
 Remotes:
     github::baolinwu/MSKAT
 RoxygenNote: 7.2.3

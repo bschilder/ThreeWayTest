@@ -1,3 +1,17 @@
+# ThreeWayTest 1.0.2
+
+## New features
+
+* Split functions into separate files (make easier to find them).
+* Increase coverage to 100%
+* Update README with icicle plot.
+* Add `get_full_genotype` func to get full 1KG genotype data.
+    - Added support function `get_data`
+
+## Bug fixes
+
+* Add missing *tests/testthat.R* script.
+
 # ThreeWayTest 1.0.1
 
 ## New features

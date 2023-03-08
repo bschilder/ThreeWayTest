@@ -34,7 +34,7 @@ networkmap <- function(dat,
                        show_plot = TRUE,
                        layout = "nicely",
                        node_size_range = NULL){
-    # templateR:::args2vars(networkmap) 
+    # devoptera::args2vars(networkmap) 
     SNP <- NULL;
     
     if(is.null(agg_var)) agg_var <- "SNP"

@@ -13,13 +13,13 @@ data("selected_genotype")
 \description{
 2504 samples in 1000 genomes project for 
 calculating covariance matrix of genotypes.
-CHR is the chromesome number.
+CHR is the chromosome number.
 SNP is the number of SNP.
-BP is the poisition of the SNP.
+BP is the position of the SNP.
 Counted is the  allele that counts as 1.
 ALT is the allele that counts as 0.
 Due to R package limit of data, this is a part-version with 9 SNPs of gene
-FADS2 to run getting_start.R in the vigneets.
+FADS2 to run getting_start.R in the vignettes
 For full Data, Please go https://github.com/bschilder/ThreeWayTest.
 \code{
 load(file.path("data","selected_genotype.Rdata"))
