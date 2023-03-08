@@ -4,10 +4,15 @@ Title: Three Way Test for Identifying Pleiotropy
 Version: 1.0.2
 Authors@R: c( 
      person(given = "Deliang",
-           family = "Bu",
-           role = c("cre"),
-           email = "budeliang@cueb.edu.cn",
-           comment = c(ORCID = "0000-0001-9939-5708"))
+            family = "Bu",
+            role = c("cre","aut"),
+            email = "budeliang@cueb.edu.cn",
+            comment = c(ORCID = "0000-0001-9939-5708")),
+     person(given="Brian",
+            family="Schilder", 
+            role = "ctb",
+            email = "brian_schilder@alumni.brown.edu", 
+            comment = c(ORCID = "0000-0001-5949-2191"))
     )
 Description: Summary statistics-based association test for 
     identifying the pleiotropic effects with sets of genetic variants.

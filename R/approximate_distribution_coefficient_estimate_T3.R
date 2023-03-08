@@ -7,10 +7,9 @@
 #' @returns Coefficient matrix of alpha, beta and d.
 #' @export
 #' @examples 
-#' null_distribution<-ThreeWayTest::generate_null_distribution_T3(m=6,n=1000,
+#' null_distribution<-generate_null_distribution_T3(m=6,n=1000,
 #' cov_mat=diag(nrow = 6, ncol = 6), cutoff_value=c(0.2,0.4,0.6,0.8,1))
-#' coefficient_matrix <- 
-#'     ThreeWayTest::approximate_distribution_coefficient_estimate_T3(
+#' coefficient_matrix <- approximate_distribution_coefficient_estimate_T3(
 #'     null_distribution_matrix = null_distribution)
 approximate_distribution_coefficient_estimate_T3<-
     function(null_distribution_matrix){

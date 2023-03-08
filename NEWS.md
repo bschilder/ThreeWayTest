@@ -11,6 +11,7 @@
 ## Bug fixes
 
 * Add missing *tests/testthat.R* script.
+* Fixed formatting of examples.
 
 # ThreeWayTest 1.0.1
 

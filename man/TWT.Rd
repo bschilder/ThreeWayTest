@@ -33,13 +33,19 @@ p_3 P_value of T_3.
 This is the method of TWT.
 }
 \examples{
-z_mat<-MASS::mvrnorm(5,mu=rep(0,5), Sigma = diag(nrow = 5, ncol = 5))
-null_distribution<-ThreeWayTest::generate_null_distribution_T3(m=25,
-n=1000,cov_mat=diag(nrow = 25,ncol= 25), cutoff_value=c(0.2,0.4,0.6,0.8,1))
-coefficient_matrix<-
-    ThreeWayTest::approximate_distribution_coefficient_estimate_T3(
+z_mat<-MASS::mvrnorm(n = 5,
+                     mu=rep(0,5), 
+                     Sigma = diag(nrow = 5, ncol = 5))
+null_distribution<-generate_null_distribution_T3(
+    m=25,
+    n=1000,
+    cov_mat=diag(nrow = 25,ncol= 25), 
+    cutoff_value=c(0.2,0.4,0.6,0.8,1))
+coefficient_matrix<- approximate_distribution_coefficient_estimate_T3(
         null_distribution_matrix = null_distribution)
-ThreeWayTest::TWT(z_mat=z_mat, est_genetic_cor=diag(nrow = 5, ncol = 5), 
-est_pheno_cor=diag(nrow = 5, ncol = 5), cutoff_value=c(0.2,0.4,0.6,0.8,1), 
-coefficient_matrix=coefficient_matrix)
+res <- TWT(z_mat=z_mat,
+           est_genetic_cor=diag(nrow = 5, ncol = 5),
+           est_pheno_cor=diag(nrow = 5, ncol = 5), 
+           cutoff_value=c(0.2,0.4,0.6,0.8,1),
+           coefficient_matrix=coefficient_matrix)
 }

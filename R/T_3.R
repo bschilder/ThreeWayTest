@@ -9,15 +9,20 @@
 #' @returns A numeric value represent p value of T3.
 #' @importFrom MASS ginv
 #' @export
-#' @examples 
-#' z_vector<-MASS::mvrnorm(1,mu=rep(0,10), Sigma = diag(nrow = 10, ncol = 10))
-#' null_distribution<-ThreeWayTest::generate_null_distribution_T3(m=10,n=1000,
-#' cov_mat=diag(nrow = 10,ncol= 10), cutoff_value=c(0.2,0.4,0.6,0.8,1))
-#' coefficient_matrix<-
-#'     ThreeWayTest::approximate_distribution_coefficient_estimate_T3(
+#' @examples
+#' z_vector<-MASS::mvrnorm(1,mu=rep(0,10),
+#'                         Sigma = diag(nrow = 10, ncol = 10))
+#' null_distribution<-generate_null_distribution_T3(
+#'     m=10,
+#'     n=1000,
+#'     cov_mat=diag(nrow = 10,ncol= 10), 
+#'     cutoff_value=c(0.2,0.4,0.6,0.8,1))
+#' coefficient_matrix<- approximate_distribution_coefficient_estimate_T3(
 #'         null_distribution_matrix = null_distribution)
-#' ThreeWayTest::T_3(z_vector=z_vector, cov_mat=diag(nrow = 10, ncol = 10), 
-#' cutoff_value=c(0.2,0.4,0.6,0.8,1), coefficient_matrix=coefficient_matrix)
+#' pvalue <- T_3(z_vector=z_vector, 
+#'               cov_mat=diag(nrow = 10, ncol = 10),
+#'               cutoff_value=c(0.2,0.4,0.6,0.8,1), 
+#'               coefficient_matrix=coefficient_matrix)
 T_3<-function(z_vector,
               cov_mat,
               cutoff_value,
