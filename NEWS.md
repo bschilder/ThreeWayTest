@@ -6,7 +6,7 @@
 * Increase coverage to 100%
 * Update README with icicle plot.
 * Add `get_full_genotype` func to get full 1KG genotype data.
-    - Added support function `get_data`
+    - Added support function `get_data` 
 
 ## Bug fixes
 
